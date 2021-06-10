@@ -8,7 +8,11 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    if params == true
+      @books = Book.all.order(params[:sort])
+    else
+      @books = Book.all
+    end
     @book = Book.new
   end
 
