@@ -5,7 +5,6 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @book_comment = BookComment.new
-    @book_new = Book
   end
 
   def index
@@ -14,6 +13,7 @@ class BooksController < ApplicationController
   end
 
   def create
+    byebug
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
