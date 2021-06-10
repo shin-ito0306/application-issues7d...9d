@@ -8,8 +8,8 @@ class BooksController < ApplicationController
   end
 
   def index
-    if params == true
-      @books = Book.all.order(params[:sort])
+    if params[:pa] != nil
+      @books = Book.all.order("#{params[:pa]} DESC")
     else
       @books = Book.all
     end
@@ -17,7 +17,6 @@ class BooksController < ApplicationController
   end
 
   def create
-    byebug
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
