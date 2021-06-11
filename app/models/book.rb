@@ -8,4 +8,13 @@ class Book < ApplicationRecord
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
+  
+  def self.search(search)
+    if search
+      @books = Book.where(category: "#{search}")
+    else
+      @books = Book.all
+    end
+  end
+  
 end
